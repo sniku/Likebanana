@@ -1,0 +1,21 @@
+Likebanana is one-click code-deployment tool developed to ease release process at getanewsletter.com
+
+Likebanana is using fabric, which means that you can use your existing fabric script(if you have one) with likebanana web interface.
+If you don't have fabric script, don't worry, default one is provided.
+
+This is how it looks like:
+
+green commit is the current one, red are old ones, and yellow are ready to be deployed.
+http://suwala.eu/media/content_media/likebanana2.png
+http://suwala.eu/media/content_media/likebanana.png
+
+INSTALLATION:
+apt-get install lynx # to verify that deployment worked
+easy_install django # if you don't have it
+easy_install fabric
+
+add your servers to settings.py.
+
+Bug reports and enhancements are very welcome!
+
+Code courtesy of getanewsletter.com

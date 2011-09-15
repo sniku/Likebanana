@@ -71,7 +71,7 @@ SERVERS = {
     'web': (
         # first web server is treated as default one.
 
-        # name      # server IP          # SSH user      # path to git directory with code              # your production banch # SSH key authorised by server (no passphase)
-        ('web01', {'host': '127.0.0.1', 'user': 'root', 'path': '/home/snik/workspaces/getanewsletter', 'branch_name': 'staging', 'ssh_key':'/root/.ssh/key_main_no_passphase'}),
+        # name      # server IP          # SSH user      # path to git directory with code      # your production banch # SSH key authorised by server (no passphase)
+        ('web01', {'host': '127.0.0.1', 'user': 'root', 'path': '/path/to/code/under/git/repo', 'branch_name': 'master', 'ssh_key':'/root/.ssh/id_rsa'}),
     )
 }
