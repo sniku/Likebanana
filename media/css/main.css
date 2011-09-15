@@ -1,0 +1,23 @@
+#server_status table {
+    width:100%;
+}
+
+#server_status table tr th{
+    text-align:left;
+}
+
+.green{
+    background-color: #C5F7B7;
+}
+
+.red{
+    color: red;
+}
+.redbg{
+    background-color: #F78D8D;
+
+}
+
+.yellow{
+    background-color: #F1F590;
+}

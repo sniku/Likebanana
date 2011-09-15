@@ -1,0 +1,9 @@
+*.bak
+*.tmproj
+*.pyc
+*.*~
+*.csv
+*.bak
+.idea
+nbproject
+

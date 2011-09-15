@@ -1,0 +1,124 @@
+{% extends "base_template.html" %}
+{% load helper_tags %}
+
+{% block content %}
+
+{% if log %}
+<div id="log">
+    <ul>
+        {% for x in log %}
+        <li>{{x}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% for error in errors %}
+<h2 class="red">{{error}}</h2>
+{% endfor%}
+
+<div id="server_status">
+    <table>
+        <tr>
+            <th>
+                server name
+            </th>
+            <th>
+                current branch
+            </th>
+            <th>
+                current head
+            </th>
+            <th>
+                webserver status
+            </th>
+        </tr>
+        {% for server_name, values in status.iteritems %}
+        <tr>
+            <td>
+                {{ server_name }}
+            </td>
+            <td>
+                {{ values.branch }}
+            </td>
+            <td>
+                {{ values.head }}
+            </td>
+            <td>
+                {{ values.webserver_status }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div id="deploy_to_production">
+    <ul>
+        {% for x,y in new_commits %}
+        <li><span class='yellow'>commit: <b>{{x}}</b></span>
+            <table>
+                <tr>
+                    <td style="width:700px;">
+                        <ul>
+                            {% for a in y|split %}
+                            <li>{{a}}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td style="width:100px;">
+                        <form method="POST">
+                            <input type="submit" value="Deploy" />
+                            <input type="hidden" name="commit" value="{{x}}">
+                            <input type="hidden" name="action" value="deploy">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        {% endfor %}
+        <li><span class='green'>commit: <b>{{current_commit.0}}</b></span>
+            <table>
+                <tr>
+                    <td style="width:700px;">
+                        <ul>
+                            {% for a in current_commit.1|split %}
+                            <li>{{a}}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td style="width:100px;">
+                        <form method="POST">
+                            <input type="submit" value="Re-deploy" />
+                            <input type="hidden" name="commit" value="{{current_commit.0}}">
+                            <input type="hidden" name="action" value="deploy">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        {% for x,y in old_commits %}
+        <li><span class='redbg'>commit: <b>{{x}}</b></span>
+            <table>
+                <tr>
+                    <td style="width:700px;">
+                        <ul>
+                            {% for a in y|split %}
+                            <li>{{a}}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td style="width:100px;">
+                        <form method="POST">
+                            <input type="submit" value="Reset to this commit" />
+                            <input type="hidden" name="commit" value="{{x}}">
+                            <input type="hidden" name="action" value="reset">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
